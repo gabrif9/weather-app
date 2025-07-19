@@ -3,6 +3,7 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { debounceTime, filter, Subscription, tap } from 'rxjs';
 import { CityNameService } from '../../services/city-name.service';
 import { CityDetails } from '../../models/city.mode';
+import { globalCitySignal } from '../../../signal';
 
 @Component({
   selector: 'app-search-location',
@@ -69,5 +70,6 @@ export class SearchLocationComponent implements OnInit, OnDestroy{
     console.log(city.name)
     this.cityDataReadySignal.set(false)
     this.locationSearched.set(city.name)
+    globalCitySignal.set(city)
   }
 }
