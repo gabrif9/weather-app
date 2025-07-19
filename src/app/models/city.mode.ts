@@ -1,7 +1,3 @@
-export interface City {
-  [key: string]: CityDetails
-}
-
 export interface CityDetails {
   name: string
   display_name: string
