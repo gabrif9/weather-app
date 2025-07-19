@@ -1,0 +1,37 @@
+<div class="flex justify-center mt-12 p-4">
+  <div class="card card-border bg-base-100 w-96 shadow-md">
+    <div class="card-body">
+        @if (retrievingWeatherDataSignal()) {
+            <div class="flex justify-center">
+                <span class="loading loading-spinner loading-xl"></span>
+            </div>
+            
+        }@else {
+            @if (currentWeatherDataReadySignal()) {
+                <h2 class="card-title">{{currentWeatherData! | formatDate}}</h2>
+                <div class="grid grid-cols-4">
+                    <div class="flex flex-col items-center">
+                        <div class="font-semibold">{{currentWeatherData!.weather[0].description}}</div>
+                        <img [src]="iconWeatherUrl" alt="weather icon">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="mb-6 font-semibold">{{currentWeatherData?.main?.temp}}C°</div>
+                        <lucide-icon [size]="30" [img]="thermometer" class="my-icon"></lucide-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="mb-6 font-semibold">{{currentWeatherData?.main?.humidity}}%</div>
+                        <lucide-icon [size]="30" [img]="dropLet" class="my-icon"></lucide-icon>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="mb-6 font-semibold">{{currentWeatherData?.wind?.speed}}m/s</div>
+                        <lucide-icon [size]="30" [img]="wind" class="my-icon"></lucide-icon>
+                    </div>
+                </div>
+            
+            } @else {
+                <div class="flex justify-center">Data not found</div>
+            }
+        }
+    </div>
+  </div>
+</div>
