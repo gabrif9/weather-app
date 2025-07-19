@@ -15,7 +15,6 @@ export class WeatherService {
   constructor() { }
 
   getCurrentWeather(lat: number, lon: number, appid: string): Observable<CurrentWeather> {
-
     return this.http.get<CurrentWeather>(CURRENT_WEATHER_URL, {params: {lat: lat, lon: lon, appid: appid, units: 'metric'}})
   }
 
