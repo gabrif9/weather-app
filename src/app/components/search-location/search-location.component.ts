@@ -67,7 +67,6 @@ export class SearchLocationComponent implements OnInit, OnDestroy{
   }
 
   selectCity(city: CityDetails) {
-    console.log(city.name)
     this.cityDataReadySignal.set(false)
     this.locationSearched.set(city.name)
     globalCitySignal.set(city)
