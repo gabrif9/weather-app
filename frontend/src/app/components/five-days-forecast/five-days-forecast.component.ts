@@ -26,9 +26,11 @@ export class FiveDaysForecastComponent {
 
   constructor() {
     effect(() => {
+      this.fiveDaysWeatherDataReadySignal.set(false)
       const value = globalFiveDaysSignal();
       if (value != null) {
         this.fiveDaysWeatherData = value;
+        this.fiveDaysWeatherDataReadySignal.set(true)
         this.manageForecastData()
       }
     })

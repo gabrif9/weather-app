@@ -1,10 +1,10 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, effect, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { FiveDaysWeather, List } from '../../models/five-days-weather.mode';
 import { CityDetails } from '../../models/city.mode';
 import { globalCitySignal, globalFiveDaysSignal } from '../../../signal';
 import { WeatherService } from '../../services/weather.service';
 import { combineLatest, filter, finalize, map, timer } from 'rxjs';
-import { formatDate } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import {
   Chart,
   LineController,
@@ -30,21 +30,28 @@ Chart.register(
 
 @Component({
   selector: 'app-weather-charts',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './weather-charts.component.html',
   styleUrl: './weather-charts.component.css'
 })
 export class WeatherChartsComponent {
+
+  @ViewChild('canvas') canvasRef?: ElementRef<HTMLCanvasElement>;
+
   chart: Chart | null = null;
 
   fiveDaysWeatherDataReadySignal = signal(false)
   fiveDaysWeatherRetrievingDataSignal = signal(false)
+
 
   weatherService = inject(WeatherService)
 
   fiveDaysWeatherData?: FiveDaysWeather
 
   cityDetails?: CityDetails | null
+
+
+  cdr = inject(ChangeDetectorRef)
 
   
 
@@ -66,10 +73,14 @@ export class WeatherChartsComponent {
     ).subscribe({
       next: result =>{
         if(result) {
-          globalFiveDaysSignal.set(result)
           this.fiveDaysWeatherRetrievingDataSignal.set(false)
+          globalFiveDaysSignal.set(result)
+          this.fiveDaysWeatherDataReadySignal.set(true)
           this.fiveDaysWeatherData = result
+
+          this.cdr.detectChanges()
           this.createChart()
+
         }
       }
     })
@@ -107,8 +118,14 @@ export class WeatherChartsComponent {
       this.chart.destroy();
     }
 
+    const ctx = this.canvasRef?.nativeElement?.getContext('2d');
+    if (!ctx) {
+      console.error('Canvas context not found!');
+      return;
+    }
 
-    this.chart = new Chart('canvas', {
+
+    this.chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: labels,
@@ -164,7 +181,6 @@ export class WeatherChartsComponent {
         }
       }
     })
-    this.fiveDaysWeatherDataReadySignal.set(false)
   }
 
   createLabels(filteredData: List[]) {
