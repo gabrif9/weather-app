@@ -63,9 +63,8 @@ export class SearchLocationComponent implements OnInit, OnDestroy{
           this.citiesName = cities
           this.cityDataReadySignal.set(true)
         }else {
-          // TODO: trigger a notification "no city found"
           this.toastDetails = {
-            message: "No city found with this name",
+            message: "No city found with this name: " + cityname,
             class: 'alert-error'
           }
         }
