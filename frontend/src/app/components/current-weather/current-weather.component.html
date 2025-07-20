@@ -23,7 +23,7 @@
                         <span class=" font-semibold text-center">{{currentWeatherData?.wind?.speed}}m/s</span>
                     </div>
                     <div class="flex items-center justify-center">
-                        <img [src]="iconWeatherUrl" alt="weather icon">
+                        <img [src]="currentWeatherData!.weather[0].icon | urlSanitizer" alt="weather icon">
                     </div>
                     <div class="flex items-center justify-center">
                         <lucide-icon [size]="30" [img]="thermometer" class="my-icon"></lucide-icon>

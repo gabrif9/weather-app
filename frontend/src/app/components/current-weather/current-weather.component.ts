@@ -8,10 +8,11 @@ import { FormatDatePipe } from "../../customPipes/formt-date.pipe";
 import { LucideAngularModule, FileIcon, Droplet, Thermometer, Wind } from 'lucide-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { TitleCasePipe } from '@angular/common';
+import { UrlSanitizerPipe } from "../../customPipes/url-sanitizer.pipe";
 
 @Component({
   selector: 'app-current-weather',
-  imports: [FormatDatePipe, LucideAngularModule, TitleCasePipe],
+  imports: [FormatDatePipe, LucideAngularModule, TitleCasePipe, UrlSanitizerPipe],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
 })
@@ -29,9 +30,6 @@ export class CurrentWeatherComponent{
   readonly dropLet = Droplet
   readonly thermometer = Thermometer
   readonly wind = Wind
-
-  
-  iconWeatherUrl?: SafeUrl
 
   sanitizer = inject(DomSanitizer)
   
@@ -56,7 +54,6 @@ export class CurrentWeatherComponent{
       next: result => {
         if(result) {
           this.currentWeatherData = result
-          this.iconWeatherUrl = this.sanitizer.bypassSecurityTrustUrl('https://openweathermap.org/img/wn/'+this.currentWeatherData.weather[0].icon + '@2x.png')
           this.currentWeatherDataReadySignal.set(true)
         } else {
           // TODO gestire tramite un toast il fatto che non ci siano dati sul meteo
