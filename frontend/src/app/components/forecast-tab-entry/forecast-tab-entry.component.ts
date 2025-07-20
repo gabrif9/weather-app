@@ -26,7 +26,6 @@ export class ForecastTabEntryComponent {
       this.forecastDayReadySignal.set(false)
       this.forecastDay = this.forecastDayInputSignal()
       if(this.forecastDay) {
-        console.log(this.forecastDay)
         this.forecastDayReadySignal.set(true)
       }
     })
