@@ -9,10 +9,11 @@ import { LucideAngularModule, FileIcon, Droplet, Thermometer, Wind } from 'lucid
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { TitleCasePipe } from '@angular/common';
 import { UrlSanitizerPipe } from "../../customPipes/url-sanitizer.pipe";
+import { ToastDetails, ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-current-weather',
-  imports: [FormatDatePipe, LucideAngularModule, TitleCasePipe, UrlSanitizerPipe],
+  imports: [FormatDatePipe, LucideAngularModule, TitleCasePipe, UrlSanitizerPipe, ToastComponent],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
 })
@@ -32,6 +33,8 @@ export class CurrentWeatherComponent{
   readonly wind = Wind
 
   sanitizer = inject(DomSanitizer)
+
+  toastDetails?: ToastDetails
   
 
   constructor() {
@@ -56,8 +59,18 @@ export class CurrentWeatherComponent{
           this.currentWeatherData = result
           this.currentWeatherDataReadySignal.set(true)
         } else {
-          // TODO gestire tramite un toast il fatto che non ci siano dati sul meteo
+          this.toastDetails = {
+            message: "Weather information not found for, " + city.name,
+            class: 'alert-error'
+          }
         }
+      },
+      error: err => {
+        console.log(err)
+        this.toastDetails = {
+            message: "Error while retrieving weather information",
+            class: 'alert-error'
+          }
       }
     })
     
