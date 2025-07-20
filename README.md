@@ -18,6 +18,8 @@ An Angular application to display current weather and a 5-day forecast with inte
 ## 🛠️ Built With
 
 - [Angular](https://angular.io/)
+- [TailwindCSS](https://tailwindcss.com/) 
+- [DaisyUI](https://daisyui.com/)
 - [Chart.js](https://www.chartjs.org/) for charts
 - [Docker Compose](https://docs.docker.com/compose/) for deployment
 - Weather API (OpenWeather)
