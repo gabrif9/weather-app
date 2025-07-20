@@ -10,20 +10,28 @@
             @if (currentWeatherDataReadySignal()) {
                 <h2 class="card-title">{{currentWeatherData! | formatDate}}</h2>
                 <div class="grid grid-cols-4">
-                    <div class="flex flex-col items-center">
-                        <div class="font-semibold">{{currentWeatherData!.weather[0].description}}</div>
+                    <div class="flex items-center justify-center">
+                        <span class="font-semibold text-center ">{{currentWeatherData!.weather[0].description | titlecase}}</span>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <span class=" font-semibold text-center">{{currentWeatherData?.main?.temp}}C°</span>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <span class=" font-semibold text-center">{{currentWeatherData?.main?.humidity}}%</span>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <span class=" font-semibold text-center">{{currentWeatherData?.wind?.speed}}m/s</span>
+                    </div>
+                    <div class="flex items-center justify-center">
                         <img [src]="iconWeatherUrl" alt="weather icon">
                     </div>
-                    <div class="flex flex-col items-center">
-                        <div class="mb-6 font-semibold">{{currentWeatherData?.main?.temp}}C°</div>
+                    <div class="flex items-center justify-center">
                         <lucide-icon [size]="30" [img]="thermometer" class="my-icon"></lucide-icon>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <div class="mb-6 font-semibold">{{currentWeatherData?.main?.humidity}}%</div>
+                    <div class="flex items-center justify-center">
                         <lucide-icon [size]="30" [img]="dropLet" class="my-icon"></lucide-icon>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <div class="mb-6 font-semibold">{{currentWeatherData?.wind?.speed}}m/s</div>
+                    <div class="flex items-center justify-center">
                         <lucide-icon [size]="30" [img]="wind" class="my-icon"></lucide-icon>
                     </div>
                 </div>

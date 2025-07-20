@@ -7,10 +7,11 @@ import { combineLatest, finalize, map, timer } from 'rxjs';
 import { FormatDatePipe } from "../../customPipes/formt-date.pipe";
 import { LucideAngularModule, FileIcon, Droplet, Thermometer, Wind } from 'lucide-angular';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-current-weather',
-  imports: [FormatDatePipe, LucideAngularModule],
+  imports: [FormatDatePipe, LucideAngularModule, TitleCasePipe],
   templateUrl: './current-weather.component.html',
   styleUrl: './current-weather.component.css'
 })
