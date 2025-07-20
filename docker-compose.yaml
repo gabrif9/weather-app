@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  city-manager:
+    container_name: city-manager
+    build:
+      context: ./backend
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+
+  frontend:
+    container_name: weather-app
+    build:
+      context: ./frontend
+      dockerfile: docker/Dockerfile
+    ports:
+      - "4200:8080"  
