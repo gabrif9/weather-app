@@ -45,6 +45,7 @@ export class FiveDaysForecastComponent {
       if(!this.forecastMapByDay!.has(day)){
         this.forecastMapByDay!.set(day, [])
       }
+      
 
       this.forecastMapByDay!.get(day)!.push({
         dt_txt: item.dt_txt.split(' ')[1],
@@ -53,11 +54,7 @@ export class FiveDaysForecastComponent {
       })
     })
 
-
-    this.forecastMapByDay.forEach((value, key) => {
-      this.tabLabels.push(key)
-    })
-
+    this.tabLabels = [...this.forecastMapByDay.keys()]
     this.tabLabels.splice(0, 1)
     console.log(this.tabLabels)
   }
