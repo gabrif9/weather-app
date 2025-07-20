@@ -19,6 +19,7 @@ An Angular application to display current weather and a 5-day forecast with inte
 
 - [Angular](https://angular.io/)
 - [TailwindCSS](https://tailwindcss.com/) 
+- [Lucide](https://lucide.dev/) for icons
 - [DaisyUI](https://daisyui.com/)
 - [Chart.js](https://www.chartjs.org/) for charts
 - [Docker Compose](https://docs.docker.com/compose/) for deployment
