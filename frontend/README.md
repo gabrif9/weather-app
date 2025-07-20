@@ -1,59 +1,61 @@
-# WeatherApp
+# 🌦️ WeatherApp Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.2.
+An Angular application to display current weather and a 5-day forecast with interactive charts.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Features
 
-```bash
-ng serve
-```
+✅ Search and view weather **only for Italian cities** 🇮🇹  
+✅ 5-day weather forecast with temperature, humidity, and precipitation details  
+✅ **Dark mode** for a modern and elegant look 🌙  
+✅ Dynamic charts showing temperature and precipitation trends (built with Chart.js)  
+✅ Responsive and modern UI  
+✅ Reactive state management with Angular signals
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠️ Built With
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- [Angular](https://angular.io/)
+- [Chart.js](https://www.chartjs.org/) for charts
+- [Docker Compose](https://docs.docker.com/compose/) for deployment
+- Weather API (OpenWeather)
+- [AnimateCSS](https://animate.style/) for animations
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Future Improvements / TODO
 
-```bash
-ng generate --help
-```
+- Better chart customization and tooltips
+- 🌍 Add an interactive map using Leaflet and OpenStreetMap. 
+    Allow users to select cities directly from the map and see real-time weather data
 
-## Building
+## 🚀 Getting Started
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. Clone this repository:
 
 ```bash
-ng test
+git clone https://github.com/your-username/weather-app-angular.git
+cd weather-app-angular
 ```
 
-## Running end-to-end tests
+2. Open the file env.prod.ts located in frontend/src/environment and set your openWeather API_KEY 
 
-For end-to-end (e2e) testing, run:
+3. Build and start the application using Docker Compose from the root folder
 
 ```bash
-ng e2e
+docker compose up --build -d
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+4. Check running containers using
 
-## Additional Resources
+```bash
+docker ps
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. Then you will find your application to this link
+
+http://localhost:4200/weather-app/
+
+
