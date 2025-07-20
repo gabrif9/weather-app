@@ -35,7 +35,7 @@ Chart.register(
   styleUrl: './weather-charts.component.css'
 })
 export class WeatherChartsComponent {
-  chart: any = []
+  chart: Chart | null = null;
 
   fiveDaysWeatherDataReadySignal = signal(false)
   fiveDaysWeatherRetrievingDataSignal = signal(false)
@@ -50,6 +50,7 @@ export class WeatherChartsComponent {
 
   constructor() {
     effect(() => {
+      this.fiveDaysWeatherDataReadySignal.set(false)
           this.cityDetails = globalCitySignal()
           if(!!this.cityDetails) {
             this.getForecast(this.cityDetails)
@@ -100,6 +101,10 @@ export class WeatherChartsComponent {
         }
       }
     };
+
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
 
     this.chart = new Chart('canvas', {
