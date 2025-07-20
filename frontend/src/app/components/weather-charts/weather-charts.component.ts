@@ -3,7 +3,7 @@ import { FiveDaysWeather, List } from '../../models/five-days-weather.mode';
 import { CityDetails } from '../../models/city.mode';
 import { globalCitySignal, globalFiveDaysSignal } from '../../../signal';
 import { WeatherService } from '../../services/weather.service';
-import { combineLatest, finalize, map, timer } from 'rxjs';
+import { combineLatest, filter, finalize, map, timer } from 'rxjs';
 import { formatDate } from '@angular/common';
 import {
   Chart,
@@ -78,6 +78,7 @@ export class WeatherChartsComponent {
   createChart() {
     let filteredData = this.filterForecastForHour()
     let labels = this.createLabels(filteredData!)
+    console.log(labels)
     let temperatureData = filteredData!.map(item => item.main.temp);
     let precipitationData = filteredData!.map(item => {
       if(!item.rain?.['3h']) {
@@ -86,7 +87,6 @@ export class WeatherChartsComponent {
         return item.rain?.['3h']
       }
     })
-    console.log(precipitationData)
 
     const animation: any = {
       y: {
@@ -137,6 +137,10 @@ export class WeatherChartsComponent {
             position: 'left',
             min: -40,
             max: 60,
+            title: {
+              display: true,
+              text: 'C°'
+            },
             ticks: {
               stepSize: 5
             }
@@ -146,6 +150,10 @@ export class WeatherChartsComponent {
             position: 'right',
             min: 0,
             max: 150,
+            title: {
+              display: true,
+              text: 'mm'
+            },
             ticks: {
               stepSize: 10
             },
@@ -169,7 +177,6 @@ export class WeatherChartsComponent {
 
   filterForecastForHour() {
     const allowedTimes = ['00:00:00', '12:00:00', '15:00:00', '21:00:00'];
-
     return this.fiveDaysWeatherData?.list.filter(item => {
       const time = item.dt_txt.split(' ')[1]
       return allowedTimes.includes(time)

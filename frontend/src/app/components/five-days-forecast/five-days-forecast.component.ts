@@ -57,6 +57,7 @@ export class FiveDaysForecastComponent {
     })
 
     this.tabLabels.splice(0, 1)
+    console.log(this.tabLabels)
   }
 
   tabChanged(event: any) {
