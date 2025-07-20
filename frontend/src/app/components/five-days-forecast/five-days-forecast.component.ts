@@ -53,17 +53,14 @@ export class FiveDaysForecastComponent {
 
 
     this.forecastMapByDay.forEach((value, key) => {
-      console.log(key)
       this.tabLabels.push(key)
     })
 
     this.tabLabels.splice(0, 1)
-    console.log(this.tabLabels)
   }
 
   tabChanged(event: any) {
     let tabName = event.target.ariaLabel
-    console.log(event.target.name)
     document.getElementsByName(tabName)
   }
 
