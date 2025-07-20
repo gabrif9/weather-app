@@ -24,7 +24,7 @@ export class ToastComponent {
     effect(() => {
       this.toastDetailsToShow = this.toastDetails()
       if(this.toastDetailsToShow) {
-        timer(this.toastDetailsToShow.time ? this.toastDetailsToShow.time : 1500).pipe(take(1)).subscribe(() => {
+        timer(this.toastDetailsToShow.time ? this.toastDetailsToShow.time : 3000).pipe(take(1)).subscribe(() => {
           this.toastDetailsToShow = undefined
         })
       }

@@ -25,6 +25,10 @@
         required
         placeholder="Search (min. 2 letters)"
       />
+      @if (searchingCitySignal()) {
+        <span class="loading loading-spinner loading-sm"></span>
+      }
+      
     </label>
 
     @if (cityDataReadySignal()) {
@@ -50,3 +54,5 @@
     }
   </div>
 </div>
+
+<app-toast [toastDetails]="toastDetails"></app-toast>

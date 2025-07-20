@@ -4,10 +4,11 @@ import { debounceTime, filter, Subscription, tap } from 'rxjs';
 import { CityNameService } from '../../services/city-name.service';
 import { CityDetails } from '../../models/city.mode';
 import { globalCitySignal } from '../../../signal';
+import { ToastComponent, ToastDetails } from "../toast/toast.component";
 
 @Component({
   selector: 'app-search-location',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastComponent],
   templateUrl: './search-location.component.html',
   styleUrl: './search-location.component.css'
 })
@@ -26,16 +27,22 @@ export class SearchLocationComponent implements OnInit, OnDestroy{
 
   citiesName: CityDetails[] = []
 
+  toastDetails?: ToastDetails
+
   ngOnInit(): void {
       this.searchCitySubscription = this.searchCityFormControl.valueChanges
       .pipe(
         tap(value => {
-          this.searchingCitySignal.set(true)
           this.cityDataReadySignal.set(false)
+          if(value!.length > 0){
+            this.searchingCitySignal.set(true)
+          }
+          
         }),
         debounceTime(1500)
       )
       .subscribe((value) => {
+        
         if(!!value && value.length > 1) {
           this.getCity(value!)
         } else {
@@ -51,17 +58,24 @@ export class SearchLocationComponent implements OnInit, OnDestroy{
   getCity(cityname: string) {
     this.cityService.getCityByName(cityname).subscribe({
       next: (cities: CityDetails[]) => {
+        this.searchingCitySignal.set(false)
         if(!!cities && cities.length > 0) {
           this.citiesName = cities
-          this.searchingCitySignal.set(false)
           this.cityDataReadySignal.set(true)
         }else {
           // TODO: trigger a notification "no city found"
+          this.toastDetails = {
+            message: "No city found with this name",
+            class: 'alert-error'
+          }
         }
       },
       error: (err) => {
         console.log(err);
-        // TODO: trigger a notification "error on server"
+        this.toastDetails = {
+            message: "Error while retrieving cities from server",
+            class: 'alert-error'
+          }
       }
     })
   }
