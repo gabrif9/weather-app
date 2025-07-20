@@ -1,7 +1,7 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { FiveDaysWeather, List } from '../../models/five-days-weather.mode';
 import { CityDetails } from '../../models/city.mode';
-import { globalCitySignal } from '../../../signal';
+import { globalCitySignal, globalFiveDaysSignal } from '../../../signal';
 import { WeatherService } from '../../services/weather.service';
 import { combineLatest, finalize, map, timer } from 'rxjs';
 import { formatDate } from '@angular/common';
@@ -66,6 +66,7 @@ export class WeatherChartsComponent {
     ).subscribe({
       next: result =>{
         if(result) {
+          globalFiveDaysSignal.set(result)
           this.fiveDaysWeatherRetrievingDataSignal.set(false)
           this.fiveDaysWeatherData = result
           this.createChart()

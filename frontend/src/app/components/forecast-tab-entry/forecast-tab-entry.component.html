@@ -1,0 +1,29 @@
+@if (forecastDayReadySignal()) {
+    <div class="border-none rounded-2xl shadow-md p-3 mb-2">
+        <div class="font-semibold mb-1">
+            {{forecastDay?.dt_txt?.substring(0, forecastDay?.dt_txt?.lastIndexOf(":"))}}
+        </div>
+        <div class="grid grid-cols-3">
+        <!-- labels -->
+        <div class="flex items-center justify-center">
+            {{forecastDay!.weather[0].description | titlecase}}
+        </div>
+        <div class="flex items-center justify-center">
+            {{forecastDay!.main.temp_min}}C°
+        </div>
+        <div class="flex items-center justify-center">
+            {{forecastDay!.main.temp_max}}C°
+        </div>
+        <!-- icons -->
+        <div class="flex items-center justify-center">
+            <img [src]="forecastDay!.weather[0].icon | urlSanitizer" alt="weather icon">
+        </div>
+        <div class="flex items-center justify-center">
+            <lucide-icon color="rgb(41,182,246)" [size]="30" [img]="thermometerSnowFlake" class="my-icon"></lucide-icon>
+        </div>
+        <div class="flex items-center justify-center">
+            <lucide-icon color="rgb(239,83,80)" [size]="30" [img]="thermometerSun" class="my-icon"></lucide-icon>
+        </div>
+    </div>
+    </div>
+}
