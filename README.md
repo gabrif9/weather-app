@@ -31,6 +31,30 @@ An Angular application to display current weather and a 5-day forecast with inte
 - 🌍 Add an interactive map using Leaflet and OpenStreetMap. 
     Allow users to select cities directly from the map and see real-time weather data
 
+## 📂 Project Structure
+
+The frontend part of the application is organized as follows (inside `src/app`):
+
+- **components/**  
+  Contains all the Angular components used to build the application’s UI.
+
+- **customPipes/**  
+  Contains custom pipes, e.g., for scenarios like sanitizing URLs before rendering them safely.
+
+- **models/**  
+  Contains TypeScript interfaces used to strongly type and model the data received from APIs.
+
+- **services/**  
+  Contains Angular services used to handle API calls and manage external data.
+
+- **environments/**  
+  Contains environment-specific files (`environment.ts`, `env.prod.ts`) to store environment variables like the OpenWeather API key.
+
+- **signal.ts**  
+  Contains global signals, used to enable communication between different components in a reactive and lightweight way.
+
+This structure helps keep the code modular, maintainable, and easy to extend in the future.    
+
 ## 🚀 Getting Started
 
 1. Clone this repository:
