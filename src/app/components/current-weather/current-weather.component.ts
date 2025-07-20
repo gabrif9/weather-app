@@ -54,7 +54,6 @@ export class CurrentWeatherComponent{
     ).subscribe({
       next: result => {
         if(result) {
-          console.log(result)
           this.currentWeatherData = result
           this.iconWeatherUrl = this.sanitizer.bypassSecurityTrustUrl('https://openweathermap.org/img/wn/'+this.currentWeatherData.weather[0].icon + '@2x.png')
           this.currentWeatherDataReadySignal.set(true)

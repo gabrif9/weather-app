@@ -29,12 +29,12 @@
 
     @if (cityDataReadySignal()) {
     <div
-      class="absolute border border-gray-300 rounded-md bg-white shadow-md w-full z-10 max-h-[200px] overflow-y-scroll"
+      class="absolute border border-gray-300 rounded-md bg-base-200 shadow-md w-full z-10 max-h-[200px] overflow-y-scroll"
     >
       @for (city of citiesName; track $index) {
       <div
         (click)="selectCity(city)"
-        class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+        class="px-4 py-2 hover:bg-gray-100 text-primary-content cursor-pointer"
       >
         {{ city.name }}, {{city.address.state}}
       </div>
