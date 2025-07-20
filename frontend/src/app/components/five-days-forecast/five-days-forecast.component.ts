@@ -2,14 +2,12 @@ import { Component, effect, signal } from '@angular/core';
 import { FiveDaysWeather } from '../../models/five-days-weather.mode';
 import { globalFiveDaysSignal } from '../../../signal';
 import { Main, Weather } from '../../models/current-weather.model';
-import { TitleCasePipe } from '@angular/common';
 import { ThermometerSnowflake, LucideAngularModule, ThermometerSun } from 'lucide-angular';
-import { UrlSanitizerPipe } from "../../customPipes/url-sanitizer.pipe";
 import { ForecastTabEntryComponent } from "../forecast-tab-entry/forecast-tab-entry.component";
 
 @Component({
   selector: 'app-five-days-forecast',
-  imports: [TitleCasePipe, LucideAngularModule, UrlSanitizerPipe, ForecastTabEntryComponent],
+  imports: [LucideAngularModule, ForecastTabEntryComponent],
   templateUrl: './five-days-forecast.component.html',
   styleUrl: './five-days-forecast.component.css'
 })
