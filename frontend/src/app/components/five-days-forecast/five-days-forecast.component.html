@@ -2,35 +2,35 @@
     <!-- name of each tab group should be unique -->
     <div class="tabs tabs-lift">
         <input type="radio" name="day" class="tab" [attr.aria-label]="tabLabels[0]" checked="checked"/>
-        <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="tab-content bg-base-100 border-base-300 p-6 lg:max-h-[400px] lg:overflow-y-scroll">
             @for (forecastDay of forecastMapByDay?.get(tabLabels[0]); track $index) {
                 <app-forecast-tab-entry [forecastDayInputSignal]="forecastDay"></app-forecast-tab-entry>
             }
         </div>
 
         <input type="radio" name="day" class="tab" [attr.aria-label]="tabLabels[1]"  />
-        <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="tab-content bg-base-100 border-base-300 p-6 lg:max-h-[400px] lg:overflow-y-scroll">
             @for (forecastDay of forecastMapByDay?.get(tabLabels[1]); track $index) {
                 <app-forecast-tab-entry [forecastDayInputSignal]="forecastDay"></app-forecast-tab-entry>
             }
         </div>
 
         <input type="radio" name="day" class="tab" [attr.aria-label]="tabLabels[2]" />
-        <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="tab-content bg-base-100 border-base-300 p-6 lg:max-h-[400px] lg:overflow-y-scroll">
             @for (forecastDay of forecastMapByDay?.get(tabLabels[2]); track $index) {
                 <app-forecast-tab-entry [forecastDayInputSignal]="forecastDay"></app-forecast-tab-entry>
             }
         </div>
 
         <input type="radio" name="day" class="tab" [attr.aria-label]="tabLabels[3]" />
-        <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="tab-content bg-base-100 border-base-300 p-6 lg:max-h-[400px] lg:overflow-y-scroll">
             @for (forecastDay of forecastMapByDay?.get(tabLabels[3]); track $index) {
                 <app-forecast-tab-entry [forecastDayInputSignal]="forecastDay"></app-forecast-tab-entry>
             }
         </div>
 
         <input type="radio" name="day" class="tab" [attr.aria-label]="tabLabels[4]" />
-        <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div class="tab-content bg-base-100 border-base-300 p-6 lg:max-h-[400px] lg:overflow-y-scroll">
             @for (forecastDay of forecastMapByDay?.get(tabLabels[4]); track $index) {
                 <app-forecast-tab-entry [forecastDayInputSignal]="forecastDay"></app-forecast-tab-entry>
             }
